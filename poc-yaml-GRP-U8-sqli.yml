@@ -1,4 +1,4 @@
-name: poc-yaml-GRP-U8-sqli
+name: poc-yaml-grp-u8-sqli
 manual: true
 transport: http
 rules:
